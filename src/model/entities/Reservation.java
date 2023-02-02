@@ -11,7 +11,7 @@ public class Reservation {
     private LocalDate checkIn;
     private LocalDate checkOut;
 
-    public Reservation(Integer roomNumber, LocalDate checkIn, LocalDate checkOut) {
+    public Reservation(Integer roomNumber, LocalDate checkIn, LocalDate checkOut) throws DomainExceptions{
 
         if(checkIn.isAfter(checkOut)){
             throw new DomainExceptions("A data de check in deve ser menor que a de check out");
@@ -44,7 +44,7 @@ public class Reservation {
 
     public long duration(){
         Period duration = Period.between(checkIn, checkOut);
-        
+
         long days = duration.getDays()
         + duration.getYears()*365
         + duration.getMonths()*30;
