@@ -6,6 +6,7 @@ import java.time.Period;
 import model.exceptions.DomainExceptions;
 
 public class Reservation {
+
     private Integer roomNumber;
     private LocalDate checkIn;
     private LocalDate checkOut;
@@ -43,7 +44,12 @@ public class Reservation {
 
     public long duration(){
         Period duration = Period.between(checkIn, checkOut);
-        return duration.getDays();
+        
+        long days = duration.getDays()
+        + duration.getYears()*365
+        + duration.getMonths()*30;
+
+        return days;
     }
 
     @Override
